@@ -1,5 +1,6 @@
 package intermediate;
 
+import java.util.List;
 import java.util.function.Function;
 import java.util.stream.*;
 
@@ -13,6 +14,15 @@ public class FlatMapExample2 {
 		int sum = stream.flatMapToInt(t -> IntStream.of(t*2)).sum();
 		System.out.println("sum : " + sum);
 		
+		List<Employee> employees = Employee.persons();
+		employees.stream().flatMapToDouble(new Function<Employee, DoubleStream>() {
+
+			@Override
+			public DoubleStream apply(Employee t) {
+				return DoubleStream.of(t.getIncome());
+			}
+			
+		}).forEach(s -> System.out.println(s));
 		
 		
 //		int sum = stream.flatMapToInt(new Function<Integer, IntStream>() {
