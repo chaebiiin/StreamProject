@@ -1,6 +1,6 @@
 package intermediate;
 
-public class Student {
+public class Student implements Comparable<Student>{
 	private String name;
 	private int score;
 
@@ -28,6 +28,11 @@ public class Student {
 	public String toString() {
 		String str = String.format("%s %s", name, score);
 		return str;
+	}
+
+	@Override
+	public int compareTo(Student o) {
+		return this.score - o.score;
 	}
 
 }
